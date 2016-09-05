@@ -16,5 +16,10 @@ namespace CalculateIt2.Engine
         public override int Value { get; }
 
         public override string ToString() => this.Value.ToString();
+
+        public static implicit operator ConstantCalculation(int x) => new ConstantCalculation(x);
+
+        public static implicit operator int (ConstantCalculation c) => c.Value;
+
     }
 }

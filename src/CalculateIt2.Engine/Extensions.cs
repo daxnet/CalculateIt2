@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CalculateIt2.Engine
 {
-    public abstract class Calculation
+    public static class Extensions
     {
-        public abstract int Value { get; }
-
+        public static Calculation ToCalculation(this int i)
+        {
+            return new ConstantCalculation(i);
+        }
     }
 }

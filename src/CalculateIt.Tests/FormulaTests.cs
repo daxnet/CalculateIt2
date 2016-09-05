@@ -27,11 +27,11 @@ namespace CalculateIt.Tests
         public void MultipleCompositeCalculationFormulaTest()
         {
             // (1+(2+3))*5
-            var calc1 = new ConstantCalculation(1);
-            var calc2 = new ConstantCalculation(2);
-            var calc3 = new ConstantCalculation(3);
-            var calc5 = new ConstantCalculation(5);
-            var calculation = new CompositeCalculation(new CompositeCalculation(calc1, new CompositeCalculation(calc2, calc3, Operator.Add), Operator.Add), calc5, Operator.Mul);
+            var calculation = new CompositeCalculation(new CompositeCalculation(1.ToCalculation(), 
+                    new CompositeCalculation(2.ToCalculation(), 3.ToCalculation(), Operator.Add), 
+                    Operator.Add), 
+                5.ToCalculation(), 
+                Operator.Mul);
             Assert.AreEqual("(1+2+3)*5", calculation.ToString());
         }
     }
