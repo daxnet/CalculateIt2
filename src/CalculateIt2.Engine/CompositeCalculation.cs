@@ -19,7 +19,7 @@ namespace CalculateIt2.Engine
         public Calculation Right { get; }
         public Operator Operator { get; }
 
-        public override int Value
+        public override long Value
         {
             get
             {
@@ -34,7 +34,7 @@ namespace CalculateIt2.Engine
                     case Operator.Div:
                         return Left.Value / Right.Value;
                     default:
-                        return int.MinValue;
+                        return long.MinValue;
                 }
             }
         }

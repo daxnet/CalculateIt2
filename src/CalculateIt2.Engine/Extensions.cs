@@ -8,7 +8,7 @@ namespace CalculateIt2.Engine
 {
     public static class Extensions
     {
-        public static Calculation ToCalculation(this int i)
+        public static Calculation ToCalculation(this long i)
         {
             return new ConstantCalculation(i);
         }

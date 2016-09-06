@@ -9,6 +9,7 @@ namespace CalculateIt2.Engine
     [Flags]
     public enum Operator
     {
+        None = 0,
         Add = 1,
         Sub = 2,
         Mul = 4,

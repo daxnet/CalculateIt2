@@ -8,18 +8,18 @@ namespace CalculateIt2.Engine
 {
     public class ConstantCalculation : Calculation
     {
-        public ConstantCalculation(int value)
+        public ConstantCalculation(long value)
         {
             this.Value = value;
         }
 
-        public override int Value { get; }
+        public override long Value { get; }
 
         public override string ToString() => this.Value.ToString();
 
-        public static implicit operator ConstantCalculation(int x) => new ConstantCalculation(x);
+        public static implicit operator ConstantCalculation(long x) => new ConstantCalculation(x);
 
-        public static implicit operator int (ConstantCalculation c) => c.Value;
+        public static implicit operator long (ConstantCalculation c) => c.Value;
 
     }
 }

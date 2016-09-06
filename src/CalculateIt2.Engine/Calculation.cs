@@ -8,7 +8,25 @@ namespace CalculateIt2.Engine
 {
     public abstract class Calculation
     {
-        public abstract int Value { get; }
+        public abstract long Value { get; }
+
+        public static Calculation Merge(Calculation left, Calculation right, Operator @operator)
+        {
+            if (left == null && right == null)
+            {
+                throw new ArgumentNullException("Both left and right calculations are empty.");
+            }
+            if (left == null)
+            {
+                return right;
+            }
+            if (right == null)
+            {
+                return left;
+            }
+
+            return new CompositeCalculation(left, right, @operator);
+        }
 
     }
 }

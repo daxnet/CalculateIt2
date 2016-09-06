@@ -24,15 +24,26 @@ namespace CalculateIt.Tests
         }
 
         [TestMethod]
-        public void MultipleCompositeCalculationFormulaTest()
+        public void MultipleCompositeCalculationFormulaTest1()
         {
             // (1+(2+3))*5
-            var calculation = new CompositeCalculation(new CompositeCalculation(1.ToCalculation(), 
-                    new CompositeCalculation(2.ToCalculation(), 3.ToCalculation(), Operator.Add), 
+            var calculation = new CompositeCalculation(new CompositeCalculation(1L.ToCalculation(), 
+                    new CompositeCalculation(2L.ToCalculation(), 3L.ToCalculation(), Operator.Add), 
                     Operator.Add), 
-                5.ToCalculation(), 
+                5L.ToCalculation(), 
                 Operator.Mul);
             Assert.AreEqual("(1+2+3)*5", calculation.ToString());
+        }
+
+        [TestMethod]
+        public void MultipleCompositeCalculationFormulaTest2()
+        {
+            // (2+3)*(4-5)
+            var left = new CompositeCalculation(2L.ToCalculation(), 3L.ToCalculation(), Operator.Add);
+            var right = new CompositeCalculation(4L.ToCalculation(), 5L.ToCalculation(), Operator.Sub);
+            var calculation = new CompositeCalculation(left, right, Operator.Mul);
+            Assert.AreEqual("(2+3)*(4-5)", calculation.ToString());
+
         }
     }
 }
