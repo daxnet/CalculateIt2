@@ -1,15 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using CalculateIt2.Engine.Rules;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace CalculateIt2.Engine.Generation
 {
+    /// <summary>
+    /// Represents the base class for the formula generators.
+    /// </summary>
     public abstract class FormulaGenerator
     {
         private readonly Dictionary<string, string> parameters = new Dictionary<string, string>();
         protected readonly List<string> errorMessages = new List<string>();
+        protected readonly List<IRule> rules = new List<IRule>();
 
-        public FormulaGenerator(string formation)
+        public FormulaGenerator(string formation, IEnumerable<IRule> rules = null)
         {
+            if (rules != null)
+            {
+                this.rules.AddRange(rules);
+            }
             this.Formation = formation;
             errorMessages.Clear();
             var regex = new Regex(this.FormationPattern);

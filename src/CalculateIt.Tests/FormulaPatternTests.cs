@@ -32,15 +32,15 @@ namespace CalculateIt.Tests
         public void BasicArithmeticFomulaSingleLimitTest()
         {
             var input = "{20}+-*|10";
-            var generator = new BasicArithmeticFormulaGenerator(input);
+            var generator = new ArithmeticFormulaGenerator(input);
 
         }
 
         [TestMethod]
         public void Test()
         {
-            var input = "{20}+";
-            var generator = new BasicArithmeticFormulaGenerator(input);
+            var input = "{20}+-";
+            var generator = new ArithmeticFormulaGenerator(input);
             var calculation = generator.Generate();
         }
     }

@@ -44,14 +44,15 @@
     <Compile Include="Calculation.cs" />
     <Compile Include="ConstantCalculation.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Generation\BasicArithmeticFormulaGenerator.cs" />
+    <Compile Include="Generation\ArithmeticFormulaGenerator.cs" />
     <Compile Include="Generation\FormulaGenerator.cs" />
     <Compile Include="Operator.cs" />
+    <Compile Include="OperatorUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\AvoidDivideByZeroRule.cs" />
+    <Compile Include="Rules\IRule.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Rules\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
