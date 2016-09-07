@@ -12,6 +12,9 @@ namespace CalculateIt2.Engine.Rules
 
         public void Apply(Calculation left, Calculation right, IDictionary<string, string> parameters, ref Operator @operator)
         {
+            if (left == null || right == null)
+                return;
+
             var leftValue = left.Value;
 
             var minValue = Convert.ToInt32(parameters["min"]);
@@ -20,7 +23,6 @@ namespace CalculateIt2.Engine.Rules
 
             long toValue = 0;
 
-            //Ensure that the value for adjustment is not zero.
             do
             {
                 if (maxValue == 0)

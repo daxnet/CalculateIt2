@@ -38,19 +38,18 @@ namespace CalculateIt.Tests
         {
             var input = "{20}+-*|10";
             var generator = new ArithmeticFormulaGenerator(input);
-
         }
 
         [TestMethod]
         public void Test()
         {
-            var input = "{3}/|2";
-            var generator = new ArithmeticFormulaGenerator(input/*, new[] { new AvoidNegativeResultRule() }*/);
+            var input = "{30}+-*/|10";
+            var generator = new ArithmeticFormulaGenerator(input, new[] { new AvoidNegativeResultRule() });
             Calculation calculation = null;
             List<Calculation> calculations = new List<Calculation>();
             Stopwatch sw = new Stopwatch();
             sw.Restart();
-            for (var i = 0; i < 1000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 calculation = generator.Generate();
                 calculations.Add(calculation);
