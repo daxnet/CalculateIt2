@@ -50,11 +50,12 @@
     <Compile Include="IVisitor.cs" />
     <Compile Include="IVisitorAcceptor.cs" />
     <Compile Include="Operator.cs" />
+    <Compile Include="Rules\AvoidNegativeResultRule.cs" />
     <Compile Include="Rules\BuiltInAttribute.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\AvoidDivideByZeroRule.cs" />
-    <Compile Include="Rules\CalculationValueAdjustment.cs" />
+    <Compile Include="Rules\RandomizedCalculationValueAdjustment.cs" />
     <Compile Include="Rules\ConstantCalculationCounter.cs" />
     <Compile Include="Rules\IRule.cs" />
   </ItemGroup>

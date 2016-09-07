@@ -1,4 +1,5 @@
-﻿using CalculateIt2.Engine.Rules;
+﻿using System.Linq;
+using CalculateIt2.Engine.Rules;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -15,10 +16,17 @@ namespace CalculateIt2.Engine.Generation
 
         public FormulaGenerator(string formation, IEnumerable<IRule> rules = null)
         {
+            this.rules.Add(new AvoidDivideByZeroRule());
+
             if (rules != null)
             {
-                this.rules.AddRange(rules);
+                foreach(var rule in rules)
+                {
+                    if (this.rules.Any(r => r.GetType() == rule.GetType())) continue;
+                    this.rules.Add(rule);
+                }
             }
+
             this.Formation = formation;
             errorMessages.Clear();
             var regex = new Regex(this.FormationPattern);

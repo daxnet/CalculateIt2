@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CalculateIt2.Engine.Rules
 {
     [BuiltIn]
-    public sealed class AvoidDivideByZeroRule : IRule
+    internal sealed class AvoidDivideByZeroRule : IRule
     {
         private static readonly Random rnd = new Random(DateTime.Now.Millisecond);
 
@@ -38,7 +38,7 @@ namespace CalculateIt2.Engine.Rules
                 var counter = new ConstantCalculationCounter();
                 right.Accept(counter);
 
-                var adjustment = new CalculationValueAdjustment(toValue, counter.NumOfConstantCalculations);
+                var adjustment = new RandomizedCalculationValueAdjustment(toValue, counter.NumOfConstantCalculations);
                 while (right.Value == 0)
                 {
                     right.Accept(adjustment);

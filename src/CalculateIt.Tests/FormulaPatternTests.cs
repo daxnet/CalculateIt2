@@ -44,8 +44,8 @@ namespace CalculateIt.Tests
         [TestMethod]
         public void Test()
         {
-            var input = "{10}+/|30";
-            var generator = new ArithmeticFormulaGenerator(input, new[] { new AvoidDivideByZeroRule() });
+            var input = "{3}/|2";
+            var generator = new ArithmeticFormulaGenerator(input/*, new[] { new AvoidNegativeResultRule() }*/);
             Calculation calculation = null;
             List<Calculation> calculations = new List<Calculation>();
             Stopwatch sw = new Stopwatch();

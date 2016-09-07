@@ -10,7 +10,7 @@ namespace CalculateIt2.Engine.Rules
     /// Represents the class that can modify the constant calculations
     /// in a given composite calculation instance.
     /// </summary>
-    internal sealed class CalculationValueAdjustment : CalculationVisitor
+    internal sealed class RandomizedCalculationValueAdjustment : CalculationVisitor
     {
 
         private readonly long toValue;
@@ -19,7 +19,7 @@ namespace CalculateIt2.Engine.Rules
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
         private readonly int hitIndex;
 
-        public CalculationValueAdjustment(long toValue, int totalNumberOfConstantCalculations)
+        public RandomizedCalculationValueAdjustment(long toValue, int totalNumberOfConstantCalculations)
         {
             this.toValue = toValue;
             hitIndex = rnd.Next(totalNumberOfConstantCalculations);
