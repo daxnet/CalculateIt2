@@ -6,23 +6,43 @@ using System.Threading.Tasks;
 
 namespace CalculateIt2.Engine.Rules
 {
+    [BuiltIn]
     public sealed class AvoidDivideByZeroRule : IRule
     {
+        private static readonly Random rnd = new Random(DateTime.Now.Millisecond);
+
         public void Apply(Calculation left, Calculation right, IDictionary<string, string> parameters, ref Operator @operator)
         {
             if (@operator == Operator.Div &&
                 right.Value == 0)
             {
-                // This means that the calculation at the left hand side is going to
-                // be divided by zero, which is not allowed in the arithmetic calculation.
-                // Simply get the workaround by changing the operator to another one other
-                // than division.
-                var acceptableOperators = parameters["operator"];
-                if (right is ConstantCalculation)
+                var minValue = Convert.ToInt32(parameters["min"]);
+                var maxValue = 0;
+                int.TryParse(parameters["max"], out maxValue);
+
+                long toValue = 0;
+                
+                //Ensure that the value for adjustment is not zero.
+                while (toValue == 0)
                 {
-                    
+                    if (maxValue == 0)
+                    {
+                        toValue = rnd.Next(minValue + 1);
+                    }
+                    else
+                    {
+                        toValue = rnd.Next(minValue, maxValue + 1);
+                    }
                 }
-                @operator = OperatorUtils.GenerateRandomOperator(acceptableOperators, Operator.Div);
+
+                var counter = new ConstantCalculationCounter();
+                right.Accept(counter);
+
+                var adjustment = new CalculationValueAdjustment(toValue, counter.NumOfConstantCalculations);
+                while (right.Value == 0)
+                {
+                    right.Accept(adjustment);
+                }
             }
         }
     }

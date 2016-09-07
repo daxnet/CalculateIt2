@@ -39,6 +39,13 @@ namespace CalculateIt2.Engine
             }
         }
 
+        public override void Accept(IVisitor visitor)
+        {
+            Left.Accept(visitor);
+            visitor.Visit(this);
+            Right.Accept(visitor);
+        }
+
         public override string ToString()
         {
             string operatorSign = null;

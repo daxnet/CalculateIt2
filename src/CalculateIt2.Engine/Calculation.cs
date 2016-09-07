@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculateIt2.Engine
 {
-    public abstract class Calculation
+    public abstract class Calculation : IVisitorAcceptor
     {
         public abstract long Value { get; }
 
@@ -28,5 +28,6 @@ namespace CalculateIt2.Engine
             return new CompositeCalculation(left, right, @operator);
         }
 
+        public abstract void Accept(IVisitor visitor);
     }
 }

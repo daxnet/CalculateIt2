@@ -2,6 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.RegularExpressions;
 using CalculateIt2.Engine.Generation;
+using CalculateIt2.Engine;
+using System.Text;
+using CalculateIt2.Engine.Rules;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace CalculateIt.Tests
 {
@@ -39,9 +44,19 @@ namespace CalculateIt.Tests
         [TestMethod]
         public void Test()
         {
-            var input = "{20}+-";
-            var generator = new ArithmeticFormulaGenerator(input);
-            var calculation = generator.Generate();
+            var input = "{10}+/|30";
+            var generator = new ArithmeticFormulaGenerator(input, new[] { new AvoidDivideByZeroRule() });
+            Calculation calculation = null;
+            List<Calculation> calculations = new List<Calculation>();
+            Stopwatch sw = new Stopwatch();
+            sw.Restart();
+            for (var i = 0; i < 1000; i++)
+            {
+                calculation = generator.Generate();
+                calculations.Add(calculation);
+            }
+            sw.Stop();
+            var elapsed = sw.Elapsed;
         }
     }
 }

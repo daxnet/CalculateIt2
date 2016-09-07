@@ -59,7 +59,7 @@ namespace CalculateIt2.Engine.Generation
                 {
                     factor = rnd.Next(minValue, maxValue + 1);
                 }
-                var @operator = OperatorUtils.GenerateRandomOperator(this.acceptableOperators);
+                var @operator = Utils.GenerateRandomOperator(this.acceptableOperators);
                 Calculation left = result, right = new ConstantCalculation(factor);
                 
                 if (@operator == Operator.Add || @operator == Operator.Mul)

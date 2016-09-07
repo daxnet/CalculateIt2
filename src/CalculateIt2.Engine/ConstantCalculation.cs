@@ -8,12 +8,23 @@ namespace CalculateIt2.Engine
 {
     public class ConstantCalculation : Calculation
     {
+        private long value;
         public ConstantCalculation(long value)
         {
-            this.Value = value;
+            this.value = value;
         }
 
-        public override long Value { get; }
+        public override long Value
+        {
+            get { return this.value; }
+        }
+
+        internal void SetValue(long value)
+        {
+            this.value = value;
+        }
+
+        public override void Accept(IVisitor visitor) => visitor.Visit(this);
 
         public override string ToString() => this.Value.ToString();
 
