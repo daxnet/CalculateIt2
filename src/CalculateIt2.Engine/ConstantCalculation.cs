@@ -28,6 +28,8 @@ namespace CalculateIt2.Engine
 
         public override string ToString() => this.Value.ToString();
 
+        public override string ToFormattedString(SpacingOption option = SpacingOption.None) => this.Value.ToString();
+
         public static implicit operator ConstantCalculation(long x) => new ConstantCalculation(x);
 
         public static implicit operator long (ConstantCalculation c) => c.Value;

@@ -16,32 +16,34 @@ namespace CalculateIt2.Engine.Rules
                 return;
 
             var leftValue = left.Value;
+            var rightValue = right.Value;
 
-            var minValue = Convert.ToInt32(parameters["min"]);
-            var maxValue = 0;
-            int.TryParse(parameters["max"], out maxValue);
-
-            long toValue = 0;
-
-            do
+            if (@operator == Operator.Sub &&
+                leftValue < rightValue)
             {
-                if (maxValue == 0)
-                {
-                    toValue = rnd.Next(minValue + 1);
-                }
-                else
-                {
-                    toValue = rnd.Next(minValue, maxValue + 1);
-                }
-            } while (toValue > leftValue);
+                var minValue = Convert.ToInt32(parameters["min"]);
+                var maxValue = 0;
+                int.TryParse(parameters["max"], out maxValue);
 
-            var counter = new ConstantCalculationCounter();
-            right.Accept(counter);
+                var leftConstant = left as ConstantCalculation;
+                var rightConstant = right as ConstantCalculation;
 
-            var adjustment = new RandomizedCalculationValueAdjustment(toValue, counter.NumOfConstantCalculations);
-            while (right.Value > leftValue)
-            {
-                right.Accept(adjustment);
+                if (leftConstant == null &&
+                    rightConstant == null)
+                {
+                    return;
+                }
+
+                if (rightConstant != null)
+                {
+                    rightConstant.SetValue(rnd.Next(Convert.ToInt32(leftValue + 1)));
+                }
+                else if (leftConstant != null)
+                {
+                    var upperValue = maxValue == 0 ? minValue : maxValue;
+                    leftConstant.SetValue(rnd.Next(Convert.ToInt32(rightValue), upperValue + 1));
+                }
+
             }
         }
     }

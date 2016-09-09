@@ -86,6 +86,56 @@ namespace CalculateIt2.Engine
             return $"{Left}{operatorSign}{Right}";
         }
 
+        public override string ToFormattedString(SpacingOption option = SpacingOption.None)
+        {
+            string operatorSign = null;
+            string spacing = "";
+            switch (option)
+            {
+                case SpacingOption.Thin:
+                    spacing = " ";
+                    break;
+                case SpacingOption.Thick:
+                    spacing = "   ";
+                    break;
+            }
+            switch (Operator)
+            {
+                case Operator.Add:
+                    operatorSign = $"{spacing}\u002B{spacing}";
+                    break;
+                case Operator.Sub:
+                    operatorSign = $"{spacing}\u2212{spacing}";
+                    break;
+                case Operator.Mul:
+                    operatorSign = $"{spacing}\u00D7{spacing}";
+                    break;
+                case Operator.Div:
+                    operatorSign = $"{spacing}\u00F7{spacing}";
+                    break;
+            }
+            if (Left is CompositeCalculation &&
+                !(Right is CompositeCalculation) &&
+                OperatorPrecedence((Left as CompositeCalculation).Operator) < OperatorPrecedence(this.Operator))
+            {
+                return $"\u0028{Left.ToFormattedString(option)}\u0029{operatorSign}{Right.ToFormattedString(option)}";
+            }
+
+            if (!(Left is CompositeCalculation) &&
+                Right is CompositeCalculation &&
+                OperatorPrecedence((Right as CompositeCalculation).Operator) < OperatorPrecedence(this.Operator))
+            {
+                return $"{Left.ToFormattedString(option)}{operatorSign}\u0028{Right.ToFormattedString(option)}\u0029";
+            }
+
+            if (Left is CompositeCalculation && Right is CompositeCalculation)
+            {
+                return $"\u0028{Left.ToFormattedString(option)}\u0029{operatorSign}\u0028{Right.ToFormattedString(option)}\u0029";
+            }
+
+            return $"{Left.ToFormattedString(option)}{operatorSign}{Right.ToFormattedString(option)}";
+        }
+
         private static int OperatorPrecedence(Operator op)
         {
             return op == Operator.Add || op == Operator.Sub ? 1 : 2;

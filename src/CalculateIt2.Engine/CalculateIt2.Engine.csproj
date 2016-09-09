@@ -45,10 +45,11 @@
     <Compile Include="Calculation.cs" />
     <Compile Include="ConstantCalculation.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Generation\ArithmeticFormulaGenerator.cs" />
-    <Compile Include="Generation\FormulaGenerator.cs" />
+    <Compile Include="Generation\ArithmeticEquationGenerator.cs" />
+    <Compile Include="Generation\EquationGenerator.cs" />
     <Compile Include="IVisitor.cs" />
     <Compile Include="IVisitorAcceptor.cs" />
+    <Compile Include="SpacingOption.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Rules\AvoidNegativeResultRule.cs" />
     <Compile Include="Rules\BuiltInAttribute.cs" />

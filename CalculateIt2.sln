@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt2.Engine", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt.Tests", "src\CalculateIt.Tests\CalculateIt.Tests.csproj", "{E0E5CF67-A97E-44A7-8779-D06EB68EB4A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt2.MainApp", "src\CalculateIt2.MainApp\CalculateIt2.MainApp.csproj", "{AC0234B3-C086-4E2C-A212-74F8204A0BC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E0E5CF67-A97E-44A7-8779-D06EB68EB4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0E5CF67-A97E-44A7-8779-D06EB68EB4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0E5CF67-A97E-44A7-8779-D06EB68EB4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,10 @@ namespace CalculateIt2.Engine
     {
         public abstract long Value { get; }
 
+        public abstract void Accept(IVisitor visitor);
+
+        public abstract string ToFormattedString(SpacingOption option = SpacingOption.None);
+
         public static Calculation Merge(Calculation left, Calculation right, Operator @operator)
         {
             if (left == null && right == null)
@@ -28,6 +32,6 @@ namespace CalculateIt2.Engine
             return new CompositeCalculation(left, right, @operator);
         }
 
-        public abstract void Accept(IVisitor visitor);
+        
     }
 }

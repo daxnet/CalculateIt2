@@ -13,6 +13,11 @@ namespace CalculateIt2.Engine.Rules
 
         public void Apply(Calculation left, Calculation right, IDictionary<string, string> parameters, ref Operator @operator)
         {
+            if (right == null)
+            {
+                return;
+            }
+
             if (@operator == Operator.Div &&
                 right.Value == 0)
             {
@@ -20,27 +25,13 @@ namespace CalculateIt2.Engine.Rules
                 var maxValue = 0;
                 int.TryParse(parameters["max"], out maxValue);
 
-                long toValue = 0;
-                
-                //Ensure that the value for adjustment is not zero.
-                while (toValue == 0)
-                {
-                    if (maxValue == 0)
-                    {
-                        toValue = rnd.Next(minValue + 1);
-                    }
-                    else
-                    {
-                        toValue = rnd.Next(minValue, maxValue + 1);
-                    }
-                }
-
                 var counter = new ConstantCalculationCounter();
                 right.Accept(counter);
 
-                var adjustment = new RandomizedCalculationValueAdjustment(toValue, counter.NumOfConstantCalculations);
+                var adjustment = new RandomizedCalculationValueAdjustment(minValue, maxValue, counter.NumOfConstantCalculations, x => x == 0);
                 while (right.Value == 0)
                 {
+                    adjustment.Reset();
                     right.Accept(adjustment);
                 }
             }

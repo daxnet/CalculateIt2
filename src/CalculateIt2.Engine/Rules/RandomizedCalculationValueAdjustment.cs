@@ -13,24 +13,64 @@ namespace CalculateIt2.Engine.Rules
     internal sealed class RandomizedCalculationValueAdjustment : CalculationVisitor
     {
 
-        private readonly long toValue;
-        private bool processed = false;
+        private readonly int min;
+        private readonly int max;
+        private readonly int totalNumberOfConstantCalculations;
+        private readonly Func<int, bool> exclusionExpectation;
         private int currentIdx = 0;
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
-        private readonly int hitIndex;
+        private int hitIndex;
 
-        public RandomizedCalculationValueAdjustment(long toValue, int totalNumberOfConstantCalculations)
+        public RandomizedCalculationValueAdjustment(int min, int max, int totalNumberOfConstantCalculations, Func<int, bool> exclusionExpectation = null)
         {
-            this.toValue = toValue;
+            this.min = min;
+            this.max = max;
+            this.exclusionExpectation = exclusionExpectation;
+            this.totalNumberOfConstantCalculations = totalNumberOfConstantCalculations;
+        }
+
+        private int GetValue()
+        {
+            int value;
+            if (exclusionExpectation != null)
+            {
+                do
+                {
+                    if (max == 0)
+                    {
+                        value = rnd.Next(0, min + 1);
+                    }
+                    else
+                    {
+                        value = rnd.Next(min, max + 1);
+                    }
+                } while (exclusionExpectation(value));
+            }
+            else
+            {
+                if (max == 0)
+                {
+                    value = rnd.Next(0, min + 1);
+                }
+                else
+                {
+                    value = rnd.Next(min, max + 1);
+                }
+            }
+            return value;
+        }
+
+        internal void Reset()
+        {
+            currentIdx = 0;
             hitIndex = rnd.Next(totalNumberOfConstantCalculations);
         }
 
         protected override void VisitConstantCalculation(ConstantCalculation constantCalculation)
         {
-            if (!processed && currentIdx == hitIndex)
+            if (currentIdx == hitIndex)
             {
-                constantCalculation.SetValue(this.toValue);
-                processed = true;
+                constantCalculation.SetValue(GetValue());
             }
             currentIdx++;
         }
