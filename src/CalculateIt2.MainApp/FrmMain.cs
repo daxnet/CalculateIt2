@@ -14,7 +14,7 @@ namespace CalculateIt2.MainApp
 {
     public partial class FrmMain : Form
     {
-        private readonly ArithmeticEquationGenerator generator = new ArithmeticEquationGenerator("{10~20}+-|3", new[] { new AvoidNegativeResultRule() });
+        private readonly ArithmeticEquationGenerator generator = new ArithmeticEquationGenerator("{30}+-*/|4", new AvoidNegativeResultRule(), new DivisibilityEnsuranceRule());
         public FrmMain()
         {
             InitializeComponent();

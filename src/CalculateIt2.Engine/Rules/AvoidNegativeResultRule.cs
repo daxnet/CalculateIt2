@@ -21,9 +21,7 @@ namespace CalculateIt2.Engine.Rules
             if (@operator == Operator.Sub &&
                 leftValue < rightValue)
             {
-                var minValue = Convert.ToInt32(parameters["min"]);
-                var maxValue = 0;
-                int.TryParse(parameters["max"], out maxValue);
+                var max = Convert.ToInt32(parameters["max"]);
 
                 var leftConstant = left as ConstantCalculation;
                 var rightConstant = right as ConstantCalculation;
@@ -36,12 +34,11 @@ namespace CalculateIt2.Engine.Rules
 
                 if (rightConstant != null)
                 {
-                    rightConstant.SetValue(rnd.Next(Convert.ToInt32(leftValue + 1)));
+                    rightConstant.SetValue(rnd.Next(Convert.ToInt32(leftValue) + 1));
                 }
                 else if (leftConstant != null)
                 {
-                    var upperValue = maxValue == 0 ? minValue : maxValue;
-                    leftConstant.SetValue(rnd.Next(Convert.ToInt32(rightValue), upperValue + 1));
+                    leftConstant.SetValue(rnd.Next(Convert.ToInt32(rightValue), max + 1));
                 }
 
             }

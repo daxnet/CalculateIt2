@@ -30,7 +30,7 @@ namespace CalculateIt2.Engine.Generation
         /// </summary>
         /// <param name="formation">The formation of the equation that is going to be generated.</param>
         /// <param name="rules">A list of <see cref="Rules.IRule"/> instances that is registered with current equation generator.</param>
-        public EquationGenerator(string formation, IEnumerable<IRule> rules = null)
+        public EquationGenerator(string formation, params IRule[] rules)
         {
             // Adds the AvoidDivideByZeroRule, as it is a mandatory for a arithmetic calculation.
             this.rules.Add(new AvoidDivideByZeroRule());

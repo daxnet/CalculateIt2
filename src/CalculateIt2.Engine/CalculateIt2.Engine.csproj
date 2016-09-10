@@ -49,10 +49,11 @@
     <Compile Include="Generation\EquationGenerator.cs" />
     <Compile Include="IVisitor.cs" />
     <Compile Include="IVisitorAcceptor.cs" />
+    <Compile Include="Rules\DivisibilityEnsuranceRule.cs" />
     <Compile Include="SpacingOption.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Rules\AvoidNegativeResultRule.cs" />
-    <Compile Include="Rules\BuiltInAttribute.cs" />
+    <Compile Include="Rules\BuiltInRuleAttribute.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\AvoidDivideByZeroRule.cs" />

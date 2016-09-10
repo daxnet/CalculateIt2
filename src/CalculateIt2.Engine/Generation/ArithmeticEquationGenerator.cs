@@ -9,32 +9,31 @@ namespace CalculateIt2.Engine.Generation
 {
     public sealed class ArithmeticEquationGenerator : EquationGenerator
     {
-        private int minValue;
-        private int maxValue = 0;
+        private int max;
         private string acceptableOperators;
         private int numOfFactors;
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
 
 
-        public ArithmeticEquationGenerator(string formation, IEnumerable<IRule> rules = null) 
+        public ArithmeticEquationGenerator(string formation, params IRule[] rules) 
             : base(formation, rules)
         {
         }
 
-        protected override string FormationPattern => @"^{(?<min>\d+)(~(?<max>\d+))?}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors>\d+))?$";
+        protected override string FormationPattern => @"^{(?<max>\d+)}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors>\d+))?$";
 
         protected override bool ValidateParameters(IDictionary<string, string> parameters)
         {
-            minValue = Convert.ToInt32(parameters["min"]);
+            max = Convert.ToInt32(parameters["max"]);
+            if (max <= 0)
+            {
+                errorMessages.Add("Proposed minimal value should be larger than zero.");
+            }
+
             acceptableOperators = parameters["operator"];
             if (!int.TryParse(parameters["factors"], out numOfFactors))
             {
                 numOfFactors = 2;
-            }
-
-            if (int.TryParse(parameters["max"], out maxValue) && minValue > maxValue)
-            {
-                errorMessages.Add("Proposed minimal value should be less than or equal to the maximum value.");
             }
 
             if (string.IsNullOrEmpty(acceptableOperators))
@@ -47,18 +46,14 @@ namespace CalculateIt2.Engine.Generation
 
         public override Calculation Generate()
         {
+            if (!this.IsValid)
+            {
+                throw new InvalidOperationException("Cannot generate the equation: the given equation generation formation is not valid, please see ErrorMessages property for details.");
+            }
             Calculation result = null;
             for (var idx = 0; idx < this.numOfFactors; idx++)
             {
-                long factor = 0;
-                if (maxValue == 0)
-                {
-                    factor = rnd.Next(minValue + 1);
-                }
-                else
-                {
-                    factor = rnd.Next(minValue, maxValue + 1);
-                }
+                long factor = rnd.Next(max + 1);
                 var @operator = Utils.GenerateRandomOperator(this.acceptableOperators);
                 Calculation left = result, right = new ConstantCalculation(factor);
 

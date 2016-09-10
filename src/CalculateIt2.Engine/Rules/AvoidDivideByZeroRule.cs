@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculateIt2.Engine.Rules
 {
-    [BuiltIn]
+    [BuiltInRule]
     internal sealed class AvoidDivideByZeroRule : IRule
     {
         private static readonly Random rnd = new Random(DateTime.Now.Millisecond);
@@ -21,14 +21,12 @@ namespace CalculateIt2.Engine.Rules
             if (@operator == Operator.Div &&
                 right.Value == 0)
             {
-                var minValue = Convert.ToInt32(parameters["min"]);
-                var maxValue = 0;
-                int.TryParse(parameters["max"], out maxValue);
+                var max = Convert.ToInt32(parameters["max"]);
 
                 var counter = new ConstantCalculationCounter();
                 right.Accept(counter);
 
-                var adjustment = new RandomizedCalculationValueAdjustment(minValue, maxValue, counter.NumOfConstantCalculations, x => x == 0);
+                var adjustment = new RandomizedCalculationValueAdjustment(1, max, counter.NumOfConstantCalculations, x => x == 0);
                 while (right.Value == 0)
                 {
                     adjustment.Reset();
