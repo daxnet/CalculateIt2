@@ -11,7 +11,8 @@ namespace CalculateIt2.Engine.Generation
     {
         private int max;
         private string acceptableOperators;
-        private int numOfFactors;
+        private int numOfFactors_min;
+        private int numOfFactors_max;
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
 
 
@@ -20,20 +21,30 @@ namespace CalculateIt2.Engine.Generation
         {
         }
 
-        protected override string FormationPattern => @"^{(?<max>\d+)}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors>\d+))?$";
+        protected override string FormationPattern => @"^{(?<max>\d+)}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors_min>\d+)(-(?<factors_max>\d+))?)?$";
 
         protected override bool ValidateParameters(IDictionary<string, string> parameters)
         {
             max = Convert.ToInt32(parameters["max"]);
             if (max <= 0)
             {
-                errorMessages.Add("Proposed minimal value should be larger than zero.");
+                errorMessages.Add("Proposed maximum value should be larger than zero.");
             }
 
             acceptableOperators = parameters["operator"];
-            if (!int.TryParse(parameters["factors"], out numOfFactors))
+            if (!int.TryParse(parameters["factors_min"], out numOfFactors_min))
             {
-                numOfFactors = 2;
+                numOfFactors_min = 2;
+            }
+
+            if (!int.TryParse(parameters["factors_max"], out numOfFactors_max))
+            {
+                numOfFactors_max = 0;
+            }
+
+            if (numOfFactors_max != 0 && numOfFactors_min > numOfFactors_max)
+            {
+                errorMessages.Add("Maximum number of factors should be larger than or equal to the minimum value.");
             }
 
             if (string.IsNullOrEmpty(acceptableOperators))
@@ -51,7 +62,13 @@ namespace CalculateIt2.Engine.Generation
                 throw new InvalidOperationException("Cannot generate the equation: the given equation generation formation is not valid, please see ErrorMessages property for details.");
             }
             Calculation result = null;
-            for (var idx = 0; idx < this.numOfFactors; idx++)
+            var numOfFactors = numOfFactors_min;
+            if (numOfFactors_max != 0 )
+            {
+                numOfFactors = rnd.Next(numOfFactors_min, numOfFactors_max + 1);
+            }
+
+            for (var idx = 0; idx < numOfFactors; idx++)
             {
                 long factor = rnd.Next(max + 1);
                 var @operator = Utils.GenerateRandomOperator(this.acceptableOperators);

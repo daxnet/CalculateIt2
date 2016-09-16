@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt.Tests", "src\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt2.MainApp", "src\CalculateIt2.MainApp\CalculateIt2.MainApp.csproj", "{AC0234B3-C086-4E2C-A212-74F8204A0BC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateIt2.ExamGenerator", "src\CalculateIt2.ExamGenerator\CalculateIt2.ExamGenerator.csproj", "{24B5EE38-B0EB-4215-BA47-E4F407B2886D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC0234B3-C086-4E2C-A212-74F8204A0BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B5EE38-B0EB-4215-BA47-E4F407B2886D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B5EE38-B0EB-4215-BA47-E4F407B2886D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B5EE38-B0EB-4215-BA47-E4F407B2886D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B5EE38-B0EB-4215-BA47-E4F407B2886D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

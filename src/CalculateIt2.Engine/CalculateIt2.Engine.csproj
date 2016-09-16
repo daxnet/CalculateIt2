@@ -52,7 +52,12 @@
     <Compile Include="ConstantCalculation.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Generation\ArithmeticEquationGenerator.cs" />
+    <Compile Include="Generation\ClozeQuestionGenerator.cs" />
+    <Compile Include="Generation\ComparisonQuestionGenerator.cs" />
     <Compile Include="Generation\EquationGenerator.cs" />
+    <Compile Include="Generation\QuestionGenerationResult.cs" />
+    <Compile Include="Generation\QuestionGenerator.cs" />
+    <Compile Include="Generation\RegularQuestionGenerator.cs" />
     <Compile Include="IVisitor.cs" />
     <Compile Include="IVisitorAcceptor.cs" />
     <Compile Include="Rules\DivisibilityEnsuranceRule.cs" />

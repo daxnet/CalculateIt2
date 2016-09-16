@@ -14,12 +14,12 @@ namespace CalculateIt.Tests
     [TestClass]
     public class FormulaPatternTests
     {
-        private const string BasicArithmeticFormulaPattern = @"^{(?<min>\d+)}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors>\d+))?$";
+        private const string BasicArithmeticFormulaPattern = @"^{(?<min>\d+)}(?<operator>(\+)?(\-)?(\*)?(\/)?){1}(\|(?<factors_min>\d+)(-(?<factors_max>\d+))?)?$";
 
         [TestMethod]
         public void BasicArithmeticFormulaPatternSingleLimitTest()
         {
-            var input = "{20}+-*|2";
+            var input = "{20}+-*|2-3";
             var regex = new Regex(BasicArithmeticFormulaPattern);
             var match = regex.Match(input);
             Assert.IsTrue(match.Success);
