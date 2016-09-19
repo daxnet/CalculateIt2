@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace CalculateIt2.Engine.Rules
 {
-    [BuiltInRule]
     internal sealed class AvoidDivideByZeroRule : IRule
     {
         private static readonly Random rnd = new Random(DateTime.Now.Millisecond);

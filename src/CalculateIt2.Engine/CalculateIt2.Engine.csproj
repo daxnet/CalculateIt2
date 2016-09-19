@@ -64,7 +64,6 @@
     <Compile Include="SpacingOption.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Rules\AvoidNegativeResultRule.cs" />
-    <Compile Include="Rules\BuiltInRuleAttribute.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rules\AvoidDivideByZeroRule.cs" />

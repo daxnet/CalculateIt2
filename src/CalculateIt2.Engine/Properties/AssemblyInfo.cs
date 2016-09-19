@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("CalculateIt2.Engine")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The core components for generating arithmetic equations and arithmetic questions.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CalculateIt2.Engine")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("daxnet")]
+[assembly: AssemblyProduct("CalculateIt2")]
+[assembly: AssemblyCopyright("Copyright © 2016 by daxnet.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
