@@ -36,16 +36,36 @@
 
 namespace CalculateIt2.Engine.Rules
 {
+    /// <summary>
+    /// Represents the calculation visitor that counts the constant calculations
+    /// in a given composite calculation.
+    /// </summary>
     internal sealed class ConstantCalculationCounter : CalculationVisitor
     {
+        #region Private Fields
         private int numOfConstantCalculations;
+        #endregion
 
+        #region Public Properties        
+        /// <summary>
+        /// Gets the number of constant calculations.
+        /// </summary>
+        /// <value>
+        /// The number of constant calculations.
+        /// </value>
         public int NumOfConstantCalculations => this.numOfConstantCalculations;
+        #endregion
 
+        #region Protected Methods        
+        /// <summary>
+        /// Visits the constant calculation.
+        /// </summary>
+        /// <param name="constantCalculation">The constant calculation.</param>
         protected override void VisitConstantCalculation(ConstantCalculation constantCalculation)
         {
             base.VisitConstantCalculation(constantCalculation);
             this.numOfConstantCalculations++;
         }
+        #endregion
     }
 }
