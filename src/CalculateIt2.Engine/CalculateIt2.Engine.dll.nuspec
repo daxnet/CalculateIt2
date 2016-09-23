@@ -13,7 +13,7 @@
     <tags>Calculation Equation Generator</tags>
   </metadata>
   <files>
-    <file src="$id$.dll" target="lib\net461\" />
-    <file src="$id$.XML" target="lib\net461\" />
+    <file src="CalculateIt2.Engine.dll" target="lib\net461\" />
+    <file src="CalculateIt2.Engine.XML" target="lib\net461\" />
   </files>
 </package>
