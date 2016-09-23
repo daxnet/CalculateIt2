@@ -138,7 +138,7 @@ namespace CalculateIt2.Tests
         [Fact(DisplayName = "InvalidFactorNumberRangeTest")]
         public void InvalidFactorNumberRangeTest()
         {
-            var formation = "{20}+|2-3";
+            var formation = "{20}+|3-2";
             var generator = new ArithmeticEquationGenerator(formation);
             Assert.False(generator.IsValid);
         }
