@@ -56,14 +56,29 @@ namespace CalculateIt2.Engine.Generation
     /// <seealso cref="CalculateIt2.Engine.Generation.QuestionGenerator{System.Int64}" />
     public sealed class ClozeQuestionGenerator : QuestionGenerator<long>
     {
+        #region Private Fields
         private const string DigitalPattern = @"\d+";
         private readonly Regex regex = new Regex(DigitalPattern);
         private readonly Random rnd = new Random(DateTime.Now.Millisecond);
+        #endregion
 
+        #region Ctor        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClozeQuestionGenerator"/> class.
+        /// </summary>
+        /// <param name="placeHolder">The place holder of the question where the students should put the answer in.</param>
+        /// <param name="spacingOption">The <see cref="SpacingOption"/> value which indicates the spacing options of the generated question.</param>
         public ClozeQuestionGenerator(string placeHolder = "（ ）", SpacingOption spacingOption = SpacingOption.Thin) : base(placeHolder, spacingOption)
         {
         }
+        #endregion
 
+        #region Public Methods        
+        /// <summary>
+        /// Generates the arithmetic question based on the given calculation.
+        /// </summary>
+        /// <param name="calculation">The calculation equation from which the question is generated.</param>
+        /// <returns>A <see cref="QuestionGenerationResult{TAnswer}"/> instance which contains the question formular and the answer.</returns>
         public override QuestionGenerationResult<long> Generate(Calculation calculation)
         {
             var calculationString = calculation.ToFormattedString(this.SpacingOption);
@@ -85,5 +100,6 @@ namespace CalculateIt2.Engine.Generation
 
             return new QuestionGenerationResult<long>(formula, selectedValue);
         }
+        #endregion
     }
 }
