@@ -73,6 +73,9 @@
     <Compile Include="Rules\IRule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CalculateIt2.Engine.dll.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
