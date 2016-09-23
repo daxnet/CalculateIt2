@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
-    <id>CalculateIt2</id>
+    <id>CalculateIt2.Engine</id>
     <version>1.0.0</version>
     <authors>daxnet</authors>
     <owners>daxnet</owners>
@@ -11,5 +11,9 @@
     <description>The core components for generating arithmetic equations and arithmetic questions.</description>
     <copyright>Copyright 2016 by daxnet</copyright>
     <tags>Calculation Equation Generator</tags>
+    <files>
+      <file src="$id$.dll" target="lib\net461\" />
+      <file src="$id$.XML" target="lib\net461\" />
+    </files>
   </metadata>
 </package>
