@@ -184,35 +184,35 @@ namespace CalculateIt2.Engine
             switch (Operator)
             {
                 case Operator.Add:
-                    operatorSign = $"{spacing}\u002B{spacing}";
+                    operatorSign = $"{spacing}+{spacing}";
                     break;
                 case Operator.Sub:
-                    operatorSign = $"{spacing}\u2212{spacing}";
+                    operatorSign = $"{spacing}-{spacing}";
                     break;
                 case Operator.Mul:
-                    operatorSign = $"{spacing}\u00D7{spacing}";
+                    operatorSign = $"{spacing}×{spacing}";
                     break;
                 case Operator.Div:
-                    operatorSign = $"{spacing}\u00F7{spacing}";
+                    operatorSign = $"{spacing}÷{spacing}";
                     break;
             }
             if (Left is CompositeCalculation &&
                 !(Right is CompositeCalculation) &&
                 OperatorPrecedence((Left as CompositeCalculation).Operator) < OperatorPrecedence(this.Operator))
             {
-                return $"\u0028{Left.ToFormattedString(option)}\u0029{operatorSign}{Right.ToFormattedString(option)}";
+                return $"({Left.ToFormattedString(option)}){operatorSign}{Right.ToFormattedString(option)}";
             }
 
             if (!(Left is CompositeCalculation) &&
                 Right is CompositeCalculation &&
                 OperatorPrecedence((Right as CompositeCalculation).Operator) < OperatorPrecedence(this.Operator))
             {
-                return $"{Left.ToFormattedString(option)}{operatorSign}\u0028{Right.ToFormattedString(option)}\u0029";
+                return $"{Left.ToFormattedString(option)}{operatorSign}({Right.ToFormattedString(option)})";
             }
 
             if (Left is CompositeCalculation && Right is CompositeCalculation)
             {
-                return $"\u0028{Left.ToFormattedString(option)}\u0029{operatorSign}\u0028{Right.ToFormattedString(option)}\u0029";
+                return $"({Left.ToFormattedString(option)}){operatorSign}({Right.ToFormattedString(option)})";
             }
 
             return $"{Left.ToFormattedString(option)}{operatorSign}{Right.ToFormattedString(option)}";
