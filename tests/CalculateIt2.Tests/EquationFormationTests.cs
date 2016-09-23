@@ -44,7 +44,7 @@ namespace CalculateIt2.Tests
         [Fact(DisplayName = "TestTest")]
         public void TestTest()
         {
-            Assert.True(1 == 1);
+            Assert.True(2 == 2);
         }
 
         [Fact(DisplayName = "NoOperatorSpecifiedTest")]
