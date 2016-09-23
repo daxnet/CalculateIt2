@@ -12,7 +12,7 @@ namespace CalculateIt2.Tests
         [Fact]
         public void TestTest()
         {
-            Assert.True(1==1);
+            Assert.True(1==0);
         }
     }
 }
