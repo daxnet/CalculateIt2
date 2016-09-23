@@ -11,9 +11,9 @@
     <description>The core components for generating arithmetic equations and arithmetic questions.</description>
     <copyright>Copyright 2016 by daxnet</copyright>
     <tags>Calculation Equation Generator</tags>
-    <files>
-      <file src="$id$.dll" target="lib\net461\" />
-      <file src="$id$.XML" target="lib\net461\" />
-    </files>
   </metadata>
+  <files>
+    <file src="$id$.dll" target="lib\net461\" />
+    <file src="$id$.XML" target="lib\net461\" />
+  </files>
 </package>
