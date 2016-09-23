@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>CalculateIt2</id>
+    <version>1.0.0</version>
+    <authors>daxnet</authors>
+    <owners>daxnet</owners>
+    <licenseUrl>https://github.com/daxnet/CalculateIt2/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/daxnet/CalculateIt2</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The core components for generating arithmetic equations and arithmetic questions.</description>
+    <copyright>Copyright 2016 by daxnet</copyright>
+    <tags>Calculation Equation Generator</tags>
+  </metadata>
+</package>
